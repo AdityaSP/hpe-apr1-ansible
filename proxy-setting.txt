@@ -1,0 +1,6 @@
+export http_proxy=web-proxy.corp.hpecorp.net:8080
+export https_proxy=web-proxy.corp.hpecorp.net:8080
+-------------------------------------------------------------------------------------
+sudo vi /etc/apt/apt.conf
+
+Acquire::http::Proxy "http://web-proxy.corp.hpecorp.net:8080";
