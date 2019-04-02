@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     ansnode1.vm.network "private_network", ip: "192.168.90.2"
 	ansnode1.vm.hostname = "ansnode1"
 	ansnode1.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "512"
 	  vb.name = "ansnode1"
       vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
 
@@ -25,6 +25,22 @@ Vagrant.configure("2") do |config|
 	  sudo echo "192.168.90.2 ansnode1" >> /etc/hosts
     SHELL
   end
+  config.vm.define "ansdb" do |ansdb|
+    ansdb.vm.box = "bento/ubuntu-16.04"
+    ansdb.vm.network "private_network", ip: "192.168.90.5"
+	ansdb.vm.hostname = "ansdb"
+	ansdb.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+	  vb.name = "ansdb"
+      vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+
+    end
+	ansdb.vm.provision "shell", inline: <<-SHELL
+      sudo echo "192.168.90.1 anscontrol" >> /etc/hosts
+	  sudo echo "192.168.90.2 ansnode1" >> /etc/hosts
+    SHELL
+  end
+
 #  config.vm.define "ansnode2" do |ansnode2|
 #    ansnode2.vm.box = "bento/ubuntu-16.04"
 #    ansnode2.vm.network "private_network", ip: "192.168.90.3"
@@ -46,7 +62,7 @@ Vagrant.configure("2") do |config|
     anscontrol.vm.network "private_network", ip: "192.168.90.1"
 	anscontrol.vm.hostname = "anscontrol"
 	anscontrol.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "512"
 	  vb.name = "anscontrol"
       vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
     end
@@ -68,3 +84,12 @@ Vagrant.configure("2") do |config|
   end
   
 end
+
+
+
+
+
+
+
+
+
