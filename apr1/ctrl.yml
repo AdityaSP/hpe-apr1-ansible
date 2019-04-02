@@ -1,0 +1,8 @@
+- hosts: control
+  become: true
+  tasks:
+  - name: "Install curl"
+    apt:
+      name: curl
+      update_cache: yes
+      state: present

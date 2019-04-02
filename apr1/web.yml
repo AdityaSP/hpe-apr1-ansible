@@ -1,0 +1,38 @@
+- hosts: webserver
+  become: true
+  tasks:
+  - name: "configure apt proxy"
+    copy:
+      src: "apt.conf"
+      dest: "/etc/apt/apt.conf"
+    
+  - name: "install apache2"
+    apt:
+      name: apache2
+      update_cache: yes
+  - name: "install php"
+    apt:
+      name: php
+      update_cache: no
+  - name: "install libapache2-mod-php"
+    apt:
+      name: libapache2-mod-php
+      update_cache: no
+  - name: "install php-mysql"
+    apt:
+      name: php-mysql
+      update_cache: no
+  - name: "Start apache2"
+    service:
+      name: apache2
+      enabled: no
+      state: started
+  - name: "Port change"
+    lineinfile:
+      dest: "/etc/apache2/ports.conf"
+      regexp: "Listen 80"    
+      line: "Listen 9091"
+  - name: "Service restart"
+    service:
+      name: apache2
+      state: restarted

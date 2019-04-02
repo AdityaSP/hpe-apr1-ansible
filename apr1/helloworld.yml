@@ -1,0 +1,10 @@
+- hosts: all
+  tasks:
+  - name: "create a file"
+    command: "touch /tmp/f2.txt"
+  - name: "create another file"
+    command: "sudo apt-get install apache2"
+
+# ansible all -m command "touch..."
+# ansible all -m command "echo..."
+
