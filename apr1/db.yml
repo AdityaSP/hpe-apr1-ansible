@@ -27,18 +27,18 @@
 
   - name: "Create user"
     mysql_user: name=demo password=demo priv=demodb.*:ALL host='%' state=present
-  - name: "Copy sql"
-    copy:
-      src: "/tmp/projectcode/db/createtable.sql"
-      dest: "/tmp/"
+#  - name: "Copy sql"
+#    copy:
+#      src: "/tmp/projectcode/db/createtable.sql"
+#      dest: "/tmp/"
 
 #  - name: "Create seed data"
 #    shell: "mysql -udemo -pdemo < /tmp/createtable.sql"
-  - name: "Use mysql_db to create seed data"
-    mysql_db:
-      login_user: demo
-      login_password: demo
-      name: demodb
-      state: import
-      target: /tmp/createtable.sql
+#  - name: "Use mysql_db to create seed data"
+#    mysql_db:
+#      login_user: demo
+#      login_password: demo
+#      name: demodb
+#      state: import
+#      target: /tmp/createtable.sql
 
