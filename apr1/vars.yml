@@ -1,1 +1,6 @@
-varone: Hi
+SERVER_PORT: 9093
+env_type: "PROD"
+fruits:
+  - apple
+  - banana
+  - grapes
