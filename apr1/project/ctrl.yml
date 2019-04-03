@@ -1,8 +1,9 @@
 - hosts: control
+  gather_facts: no
   become: true
   tasks:
   - name: "Install curl"
     apt:
       name: curl
       update_cache: yes
-      state: present
+      cache_valid_time: 72000

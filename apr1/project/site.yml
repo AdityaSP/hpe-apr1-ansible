@@ -5,6 +5,8 @@
     copy:
       src: "apt.conf"
       dest: "/etc/apt/apt.conf"
-#- include: ctrl.yml
-#- include: web.yml
+
+- include: ctrl.yml
+- include: web.yml
 - include: db.yml
+- include: lb.yml

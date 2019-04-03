@@ -1,0 +1,5 @@
+- hosts: lb
+  gather_facts: no
+  become: true
+  roles:
+  - role: haproxyconfig
