@@ -1,0 +1,18 @@
+all the hosts in my system
+{% for host in groups.all %}
+{{ host }}
+{% endfor %}
+----------------------------------------
+
+{% for group in groups %}
+{{ group }} {{ groups[group] }}
+{% endfor %}
+
+----------------------------------------
+
+{% for group in groups %}
+Values of {{ group }} are :
+{% for val in groups[group] %}
+{{ val }}
+{% endfor %}
+{% endfor %}

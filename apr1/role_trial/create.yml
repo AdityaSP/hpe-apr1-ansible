@@ -1,0 +1,7 @@
+- hosts: control
+  gather_facts: no
+  vars:
+    varone: "varone from local yml"
+    vartwo: "vartwo from local yml"
+  roles:
+    - role: myownrole

@@ -11,16 +11,16 @@
       name: mysql
       state: restarted
 
-#  - name: "Allow binding from other servers"
-#    lineinfile:
-#      dest: /etc/mysql/my.cnf
-#      regexp: ^bind-address
-#      line: "bind-address = 0.0.0.0"
+  - name: "Allow binding from other servers"
+    lineinfile:
+      dest: /etc/mysql/mysql.conf.d/mysqld.cnf 
+      regexp: ^bind-address
+      line: "bind-address = 0.0.0.0"
 
-#  - name: "Restart mysql server"
-#    service:
-#      name: mysql
-#      state: restarted
+  - name: "Restart mysql server"
+    service:
+      name: mysql
+      state: restarted
 
   - name: "Create database"
     mysql_db: name=demodb state=present

@@ -3,7 +3,5 @@
   become: true
   vars:
     apache_port: 80
-  tasks:
-  - include: tasks_web.yml
-  handlers:
-  - include: handlers_web.yml
+  roles:
+  - role: apache

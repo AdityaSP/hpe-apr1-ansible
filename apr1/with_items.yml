@@ -1,10 +1,12 @@
 - hosts: control
   gather_facts: no
+  vars:
+    fruits:
+      - "one"
+      - "two"
   tasks:
   - debug:
       msg: "{{item}}"
     with_items:
-    - "apple"
-    - "android"
-    - "windows"
+      "{{fruits}}"
 

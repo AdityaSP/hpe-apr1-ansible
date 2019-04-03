@@ -1,0 +1,5 @@
+---
+# defaults file for mysql-users
+db_name: demodb
+db_user: demo
+db_pass: demo

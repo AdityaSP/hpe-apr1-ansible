@@ -15,5 +15,9 @@
       var: port_value
   - debug:
       var: node_specific
+  - debug:
+      var: hosts
+  - debug:
+      var: groups
   #- package:
   #    name: "{{webpackage}}" 

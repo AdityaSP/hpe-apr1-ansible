@@ -1,0 +1,4 @@
+---
+# defaults file for myownrole
+varone: "varone from default"
+vartwo: "vartwo from default"

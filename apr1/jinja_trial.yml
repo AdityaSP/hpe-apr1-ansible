@@ -1,0 +1,22 @@
+- hosts: control
+  vars:
+    username: Aditya
+    SERVER_PORT: 9999
+    fruits:
+    - apple
+    - banana
+    - watermelon
+  tasks:
+  - name: "scalar value"
+    template:
+      src: 1.j2
+      dest: /tmp/1.txt
+  - name: "if else value"
+    template:
+      src: 2.j2
+      dest: /tmp/2.txt
+  - name: "if else value"
+    template:
+      src: 3.j2
+      dest: /tmp/recipe.txt
+      

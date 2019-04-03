@@ -1,0 +1,4 @@
+---
+# defaults file for apache
+cache_valid_time: 36000
+apache_port: 80

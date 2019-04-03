@@ -1,0 +1,21 @@
+- name: "update cache"
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{cache_valid_time}}"
+- name: "install mysql-server"
+  apt: name=mysql-server update_cache=no
+- name: "install python-mysqldb"
+  apt: name=python-mysqldb update_cache=no
+- name: "service enable and start"
+  service:
+    name: mysql
+    enabled: true
+    state: started
+- name: "Allow binding from other servers"
+  lineinfile:
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: ^bind-address
+    line: "bind-address = 0.0.0.0"
+  notify: "Restart mysql server"
+
+
