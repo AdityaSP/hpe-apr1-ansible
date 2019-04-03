@@ -1,0 +1,31 @@
+- hosts: control
+  vars_files: 
+    - vars.yml
+  gather_facts: no
+  tasks: 
+    - name: "Plain template"
+      template:
+        src: 1.j2
+        dest: /tmp/plain.txt
+
+    - name: "replace a variable template"
+      template:
+        src: 2.j2
+        dest: /tmp/variablesubout.txt
+
+    - name: "replace a variable template"
+      template:
+        src: 3.j2
+        dest: /tmp/conditionalsubout.txt
+
+    - name: "Fruit salad recipe"
+      template:
+        src: 4.j2
+        dest: /tmp/fruitsalad.txt
+
+    - debug: var=groups
+
+    - name: "create groups"
+      template:
+        src: 5.j2
+        dest: /tmp/listofhosts.txt

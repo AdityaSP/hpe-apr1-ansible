@@ -1,0 +1,5 @@
+{% if env_type == 'PROD' %}
+Listen {{ SERVER_PORT }}
+{% else %}
+Listen 80
+{% endif %}
