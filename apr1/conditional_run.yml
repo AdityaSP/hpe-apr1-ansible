@@ -1,0 +1,36 @@
+- hosts: webserver
+  become: true
+  tasks:
+# - name: "update Debian cache"
+#   apt:
+#     update_cache: yes
+#     cache_valid_time: 36000
+#   when: ansible_os_family == 'Debian' 
+# - name: "update redhat cache"
+#   yum:
+#     update_cache: yes
+#   when: "'{{ansible_os_family}}' == 'RedHat'" 
+
+  - name: "check status of apache2"
+    command: "service apache2 status"
+    register: status_output
+    changed_when: false
+    ignore_errors: true
+  - name: "Start apache"
+    command: "service apache2 start"
+    when: status_output.rc == 3 and 'inactive' in status_output.stdout
+
+- hosts: control
+  gather_facts: no
+  tasks:
+  - name: "Check ubuntu page"
+    command: "curl 192.168.90.2:9090"
+    register: output
+    changed_when: false
+    failed_when: ('It works!' not in output.stdout) or (output.rc != 0)
+  - debug:
+      msg: "Web page is working fine"
+    when: output.rc ==0 or 'It works!' in output.stdout
+  - debug:
+      msg: "Web page is NOT working fine. Houston you have a problem"
+    when: not (('It works!' in output.stdout) or (output.rc == 0))

@@ -1,0 +1,10 @@
+- hosts: control
+  gather_facts: no
+  tasks:
+  - debug:
+      msg: "{{item}}"
+    with_items:
+    - "apple"
+    - "android"
+    - "windows"
+

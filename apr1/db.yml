@@ -1,5 +1,5 @@
 ---
-- hosts: database
+- hosts: db
   become: true
   tasks: 
   - name: "install mysql-server"

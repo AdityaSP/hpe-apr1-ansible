@@ -1,8 +1,6 @@
 - hosts: webserver
   gather_facts: no
   become: true
-  vars:
-    apache_port: 80
   tasks:
   - name: "configure apt proxy"
     copy:
@@ -12,17 +10,23 @@
     apt:
       update_cache: yes
       cache_valid_time: 36000  
-  - name: "install packages"
+  - name: "install apache2"
     apt:
-      name: item
-      #name: "{{item}}"
+      name: apache2
       update_cache: no
-    with_items:
-    - "apache2"
-    - "php"
-    - "libapache2-mod-php"
-    - "php-mysql"
-  - name: "start and enable apache2"
+  - name: "install php"
+    apt:
+      name: php
+      update_cache: no
+  - name: "install libapache2-mod-php"
+    apt:
+      name: libapache2-mod-php
+      update_cache: no
+  - name: "install php-mysql"
+    apt:
+      name: php-mysql
+      update_cache: no
+  - name: "Start apache2"
     service:
       name: apache2
       enabled: no
@@ -30,13 +34,9 @@
   - name: "Port change"
     lineinfile:
       dest: "/etc/apache2/ports.conf"
-      regexp: "^Listen"    
-      line: "Listen {{apache_port}}"
-    notify: 
-      - "restart apache2"
-
-  handlers:
-  - name: "restart apache2"
+      regexp: "Listen 80"    
+      line: "Listen 9091"
+  - name: "Service restart"
     service:
       name: apache2
       state: restarted

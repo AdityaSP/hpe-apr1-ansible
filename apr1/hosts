@@ -1,5 +1,8 @@
 [webserver]
-192.168.90.2 ansible_ssh_user=vagrant ansible_ssh_password=vagrant
+192.168.90.2 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+
+[db]
+192.168.90.5 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
 [control]
 192.168.90.1  ansible_connection=local

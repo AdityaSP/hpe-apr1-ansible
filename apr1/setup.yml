@@ -1,0 +1,20 @@
+- hosts: all
+  #gather_facts: no
+  tasks:
+  - name: "print values"
+    debug:
+      msg: "Hello There"
+  - debug: 
+      var: ansible_nodename
+  - debug: 
+      msg: "Value of node name is {{ansible_nodename}}"
+
+- hosts: all
+  tasks:
+  - name: "print values"
+    debug:
+      msg: "Hello There"
+  - debug: 
+      var: ansible_nodename
+  - debug: 
+      msg: "Value of node name is {{ansible_nodename}}"
