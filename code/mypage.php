@@ -4,7 +4,7 @@
         die("Connection failed");
  }
  echo "Connected Successfully";
- $res = mysqli_query($conn, "select distinct User from user");
+ $res = mysqli_query($conn, "select name from t1");
  while ($row = mysqli_fetch_assoc($res)){
         echo "<h1> " . $row["name"] . "</h1>";
  }
