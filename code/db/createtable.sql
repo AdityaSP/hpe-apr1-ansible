@@ -1,5 +1,5 @@
 
-use demo;
+use demodb;
 
 create table if not exists t1(
  name varchar(20)
