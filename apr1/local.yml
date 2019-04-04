@@ -1,0 +1,12 @@
+- hosts: all
+  tasks:
+  - name: "free -m"
+    command: "free -m"
+    register: output
+
+- hosts: control
+  tasks:
+  - name: "write locally"
+    template:
+      src: 1.j2
+      dest: /tmp/output.txt

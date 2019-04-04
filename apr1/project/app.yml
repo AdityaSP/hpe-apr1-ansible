@@ -1,0 +1,17 @@
+- hosts: db
+  tasks:
+  - name: "Copy sql"
+    copy:
+      src: "createtable.sql"
+      dest: "/tmp/"
+
+  - name: "Create seed data"
+    shell: "mysql -udemo -pdemo < /tmp/createtable.sql"
+
+- hosts: webserver
+  become: true
+  tasks:
+  - name: "Copy code"
+    copy:
+      src: "mypage.php"
+      dest: "/var/www/html"

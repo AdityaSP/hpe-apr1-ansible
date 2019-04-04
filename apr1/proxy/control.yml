@@ -1,0 +1,4 @@
+- hosts: control
+  become: true
+  roles:
+    - role: kunik.haproxy

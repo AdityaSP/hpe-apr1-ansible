@@ -9,6 +9,7 @@
     update_cache: no
   with_items:
     "{{packages}}"
+  notify: "restart apache2" 
 - name: "start and enable apache2"
   service:
     name: apache2

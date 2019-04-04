@@ -1,0 +1,25 @@
+- hosts: 192.168.90.2
+  gather_facts: no
+  tasks:
+  - name: "create f1"
+    file:
+      path: /tmp/f1
+      state: touch
+    notify:
+      - restart
+
+  - name: "run handlers"
+    meta: flush_handlers
+
+  - name: "create f2"
+    file:
+      path: /tmp/f2
+      state: touch
+    notify:
+      - restart
+  handlers:
+  - name: "restart"
+    become: true
+    service:
+      name: apache2
+      state: restarted 

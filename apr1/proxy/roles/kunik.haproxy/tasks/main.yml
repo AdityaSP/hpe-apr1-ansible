@@ -1,0 +1,7 @@
+- name: add haproxy PPA
+  sudo: true
+  apt_repository: repo=ppa:vbernat/haproxy-1.6
+
+- name: install 'haproxy'
+  sudo: true
+  apt: pkg=haproxy state=present
